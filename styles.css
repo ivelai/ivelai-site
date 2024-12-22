@@ -97,3 +97,8 @@ body {
 .social-links a:hover {
   color: #ffffff;
 }
+.navbar a.active {
+  color: #00ffcc; /* Couleur spéciale pour l'onglet actif */
+  font-weight: bold; /* Rendre le texte plus gras */
+  text-decoration: underline; /* Souligner l'onglet actif */
+}

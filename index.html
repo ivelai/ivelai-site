@@ -1,40 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IVELAI - Futuristic Supplements</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Accueil - IVELAI</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Lien vers le fichier CSS -->
 </head>
 <body>
-  <!-- Header Section -->
-  <header class="header">
-    <img src="banner.jpg" alt="IVELAI Banner" class="banner">
+  <!-- En-tête avec le menu de navigation -->
+  <header>
     <nav class="navbar">
       <ul>
-        <li><a href="#home">Accueil</a></li>
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="about.html">À propos</a></li>
         <li><a href="#products">Produits</a></li>
-        <li><a href="#about.html">À propos</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Bienvenu chez IVELAI</h1>
-    <p>Les compléments alimentaires du futur, aujourd'hui.</p>
-    <a href="#products" class="cta-button">Explorer nos produits</a>
+  <!-- Section principale -->
+  <main id="home">
+    <h1>Bienvenue sur IVELAI</h1>
+    <p>IVELAI combine innovation et bien-être pour améliorer la vie grâce à des compléments alimentaires naturels.</p>
+    
+    <!-- Exemple de bannière -->
+    <img src="banner.jpg" alt="Bannière IVELAI" style="width: 100%; height: auto;">
+
+    <!-- Section des produits -->
+    <section id="products">
+      <h2>Nos produits</h2>
+      <p>Découvrez notre gamme de compléments alimentaires conçus pour améliorer votre énergie, votre humeur, et bien plus.</p>
+      <!-- Ajoutez ici des descriptions ou des images de vos produits -->
+    </section>
+  </main>
+
+  <!-- Section de contact -->
+  <section id="contact">
+    <h2>Contactez-nous</h2>
+    <p>Vous avez des questions ? Envoyez-nous un message à <a href="mailto:contact@ivelai.com">contact@ivelai.com</a>.</p>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <!-- Pied de page -->
+  <footer>
     <p>© 2024 IVELAI. Tous droits réservés.</p>
-    <ul class="social-links">
-      <li><a href="#">Facebook</a></li>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">Twitter</a></li>
-    </ul>
   </footer>
 </body>
 </html>

@@ -1,39 +1,99 @@
-#about {
-  padding: 40px;
-  background-color: #1a1a1a; /* Fond sombre */
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
   color: #ffffff;
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 800px; /* Largeur maximale pour une lecture facile */
-  line-height: 1.8;
+  background: #1a1a1a;
+  overflow-x: hidden;
 }
 
-#about h2 {
-  font-size: 2.5rem;
-  color: #00ffcc; /* Couleur futuriste */
+/* Header Section */
+.header {
+  position: relative;
   text-align: center;
-  margin-bottom: 20px;
 }
-
-#about h3 {
-  font-size: 1.8rem;
+.banner {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  background-color: #0e0e0e;
+  margin: 0;
+  padding: 10px;
+  list-style-type: none;
+}
+.navbar ul li {
+  margin: 0 15px;
+}
+.navbar ul li a {
+  text-decoration: none;
   color: #00ffcc;
-  margin-top: 20px;
-}
-
-#about p {
-  margin: 10px 0;
   font-size: 1.2rem;
-  color: #cccccc; /* Gris clair */
+  transition: color 0.3s;
+}
+.navbar ul li a:hover {
+  color: #ffffff;
 }
 
-#about ul {
-  padding-left: 20px;
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #1a1a1a, #333333);
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #cccccc;
+}
+.cta-button {
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  background-color: #00ffcc;
+  color: #1a1a1a;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s;
+}
+.cta-button:hover {
+  background-color: #008080;
+}
+
+/* Footer Section */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #0e0e0e;
+}
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #777777;
+}
+.social-links {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
 }
-
-#about ul li {
-  margin: 5px 0;
-  font-size: 1.2rem;
+.social-links li {
+  margin: 0 10px;
+}
+.social-links a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+.social-links a:hover {
   color: #ffffff;
 }

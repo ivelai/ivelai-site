@@ -4,59 +4,153 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil - IVELAI</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Lien vers votre fichier CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 15px;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    #user-info {
+      margin-right: 20px;
+      font-size: 14px;
+    }
+
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #00cc99;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #009977;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px;
+      background-color: #f4f4f4;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <!-- En-tête avec le menu de navigation -->
+  <!-- En-tête -->
   <header>
-    <nav class="navbar">
+    <h1>IVELAI</h1>
+    <nav>
       <ul>
-        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="index.html">Accueil</a></li>
         <li><a href="about.html">À propos</a></li>
-        <li><a href="#products">Produits</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="register.html">Créer un compte</a></li>
-        <li><a href="login.html">Se connecter</a></li>
+        <li><a href="products.html">Produits</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+    <div id="user-info"></div> <!-- Section pour l’état de connexion -->
+    <button id="login-button" onclick="location.href='login.html'">Se connecter</button>
+    <button id="logout-button" style="display: none;">Se déconnecter</button>
   </header>
 
-  <!-- Section principale -->
-  <main id="home">
-    <h1>Bienvenue sur IVELAI</h1>
-    <p>IVELAI combine innovation et bien-être pour améliorer la vie grâce à des compléments alimentaires naturels.</p>
-    
-    <!-- Bannière principale -->
-    <img src="banner.jpg" alt="Bannière IVELAI" style="width: 100%; height: auto;">
+  <!-- Contenu principal -->
+  <main>
+    <h2>Bienvenue sur IVELAI</h2>
+    <p>Explorez nos compléments alimentaires innovants pour améliorer votre bien-être.</p>
+    <p>Découvrez nos produits <a href="products.html">ici</a>.</p>
   </main>
-
-  <!-- Section des produits -->
-  <section id="products">
-    <h2>Nos produits</h2>
-
-    <!-- Produit 1 -->
-    <div class="product">
-      <img src="produit1.jpg" alt="Complément alimentaire Énergie" class="product-image">
-      <h3>Complément alimentaire Énergie</h3>
-      <p>Boostez votre énergie au quotidien avec notre formule naturelle.</p>
-      <p class="price">Prix : 45,00 CHF</p>
-      <a href="produit1.html" class="details-button">Voir détails</a>
-      <a href="https://www.paypal.me/ivelai/45" target="_blank" class="buy-button">
-  Payer avec PayPal
-</a>
-    </div>
-
-  </section>
-
-  <!-- Section de contact -->
-  <section id="contact">
-    <h2>Contactez-nous</h2>
-    <p>Vous avez des questions ? Envoyez-nous un message à <a href="mailto:ivel_ai@outlook.com">ivel_ai@outlook.com</a>.</p>
-  </section>
 
   <!-- Pied de page -->
   <footer>
     <p>© 2024 IVELAI. Tous droits réservés.</p>
   </footer>
+
+  <!-- Script Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyApaWQHIsFStFQ7l79Dh-4CWum6gwjfvwU",
+      authDomain: "ivelai.firebaseapp.com",
+      projectId: "ivelai",
+      storageBucket: "ivelai.firebasestorage.app",
+      messagingSenderId: "573688216538",
+      appId: "1:573688216538:web:b87239c177cfa8a2cc9ee3",
+      measurementId: "G-K0MBV9G74J"
+    };
+
+    // Initialiser Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Vérifier si un utilisateur est connecté
+    onAuthStateChanged(auth, (user) => {
+      const userInfoDiv = document.getElementById('user-info');
+      const loginButton = document.getElementById('login-button');
+      const logoutButton = document.getElementById('logout-button');
+
+      if (user) {
+        // Utilisateur connecté
+        userInfoDiv.innerHTML = `Connecté en tant que : ${user.email}`;
+        loginButton.style.display = 'none';
+        logoutButton.style.display = 'inline-block';
+      } else {
+        // Aucun utilisateur connecté
+        userInfoDiv.innerHTML = `Vous n'êtes pas connecté.`;
+        loginButton.style.display = 'inline-block';
+        logoutButton.style.display = 'none';
+      }
+    });
+
+    // Fonction de déconnexion
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        alert('Déconnecté avec succès.');
+        location.reload(); // Recharge la page pour actualiser l'état
+      } catch (error) {
+        console.error('Erreur lors de la déconnexion :', error.message);
+      }
+    });
+  </script>
 </body>
 </html>

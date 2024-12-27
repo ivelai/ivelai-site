@@ -4,96 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil - IVELAI</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #333;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 15px;
-    }
-
-    nav ul li {
-      display: inline;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-    }
-
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-
-    #user-info {
-      margin-right: 20px;
-      font-size: 14px;
-    }
-
-    main {
-      padding: 20px;
-      text-align: center;
-    }
-
-    button {
-      background-color: #00cc99;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #009977;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px 20px;
-      background-color: #f4f4f4;
-      margin-top: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- En-tête -->
-  <header>
-    <h1>IVELAI</h1>
-    <nav>
+  <header class="header">
+    <img src="banner.jpg" alt="IVELAI Banner" class="banner">
+    <nav class="navbar">
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="about.html">À propos</a></li>
         <li><a href="products.html">Produits</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li id="user-info"></li> <!-- Section pour l’utilisateur connecté -->
       </ul>
+      <button id="login-button" onclick="location.href='login.html'">Se connecter</button>
+      <button id="logout-button" style="display: none;">Se déconnecter</button>
     </nav>
-    <div id="user-info"></div> <!-- Section pour l’état de connexion -->
-    <button id="login-button" onclick="location.href='login.html'">Se connecter</button>
-    <button id="logout-button" style="display: none;">Se déconnecter</button>
   </header>
 
   <!-- Contenu principal -->
   <main>
-    <h2>Bienvenue sur IVELAI</h2>
-    <p>Explorez nos compléments alimentaires innovants pour améliorer votre bien-être.</p>
-    <p>Découvrez nos produits <a href="products.html">ici</a>.</p>
+    <section id="home">
+      <h1>Bienvenue sur IVELAI</h1>
+      <p>Explorez nos compléments alimentaires conçus pour améliorer votre bien-être.</p>
+      <p><a href="products.html" class="btn">Découvrez nos produits</a></p>
+    </section>
   </main>
 
   <!-- Pied de page -->
@@ -123,32 +59,32 @@
 
     // Vérifier si un utilisateur est connecté
     onAuthStateChanged(auth, (user) => {
-      const userInfoDiv = document.getElementById('user-info');
+      const userInfo = document.getElementById('user-info');
       const loginButton = document.getElementById('login-button');
       const logoutButton = document.getElementById('logout-button');
 
       if (user) {
-        // Utilisateur connecté
-        userInfoDiv.innerHTML = `Connecté en tant que : ${user.email}`;
+        // Afficher les informations utilisateur
+        userInfo.textContent = `Connecté : ${user.email}`;
         loginButton.style.display = 'none';
         logoutButton.style.display = 'inline-block';
       } else {
-        // Aucun utilisateur connecté
-        userInfoDiv.innerHTML = `Vous n'êtes pas connecté.`;
+        // Si aucun utilisateur n’est connecté
+        userInfo.textContent = '';
         loginButton.style.display = 'inline-block';
         logoutButton.style.display = 'none';
       }
     });
 
-    // Fonction de déconnexion
+    // Gestion de la déconnexion
     const logoutButton = document.getElementById('logout-button');
     logoutButton.addEventListener('click', async () => {
       try {
         await signOut(auth);
-        alert('Déconnecté avec succès.');
-        location.reload(); // Recharge la page pour actualiser l'état
+        alert('Vous avez été déconnecté.');
+        location.reload(); // Recharge la page après la déconnexion
       } catch (error) {
-        console.error('Erreur lors de la déconnexion :', error.message);
+        console.error('Erreur de déconnexion :', error);
       }
     });
   </script>
